@@ -12,7 +12,7 @@ const TicTacToe = () => {
     ["", "", ""],
   ]);
   const [countdown, setCountdown] = useState(3);
-  const [first,setFirst] = useState("human")
+  const [first, setFirst] = useState("human");
 
   const startReloadCountdown = () => {
     const timer = setInterval(() => {
@@ -26,7 +26,7 @@ const TicTacToe = () => {
   };
 
   const handleAiFirst = async () => {
-    setFirst("ai")
+    setFirst("ai");
     const res = await nextAiMoves({ board });
     console.log(res.data.board);
 
@@ -118,19 +118,24 @@ const TicTacToe = () => {
   useEffect(() => {}, [board]);
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto  mt-8 bg-[#888DF2] p-5 rounded-lg">
+      <div className="bg-white p-5 rounded-lg">
       <button
         onClick={handleAiFirst}
-        className={`  ${first === "ai" ?"bg-blue-500 hover:bg-blue-700":"bg-gray-500 hover:bg-gray-700"} text-white font-bold py-2 px-4 rounded`}
+        className={`  ${
+          first === "ai"
+            ? "bg-blue-500 hover:bg-blue-700"
+            : "bg-gray-500 hover:bg-gray-700"
+        } text-white font-bold py-2 px-4 rounded mb-5`}
       >
         ai first
       </button>
-      <div className="grid grid-cols-3 border-2 border-black">
+      <div className="grid grid-cols-3 border-[1px] border-black">
         {board.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <div
               key={`${rowIndex}-${colIndex}`}
-              className="bg-gray-200 h-16 flex items-center justify-center text-4xl cursor-pointer border-2 border-black"
+              className="bg-gray-100 h-16  flex items-center justify-center text-4xl cursor-pointer border-[1px] border-black"
               onClick={() => handleClick(rowIndex, colIndex)}
             >
               {cell}
@@ -154,6 +159,7 @@ const TicTacToe = () => {
           Reloading in {countdown} seconds
         </div>
       )}
+    </div>
     </div>
   );
 };
